@@ -1,4 +1,5 @@
 import React from 'react';
+import Pop from './images/pop.jpg'
 import './App.css';
 import TextField from '@material-ui/core/TextField'
 import axios from 'axios'
@@ -15,7 +16,8 @@ class App extends React.Component {
       searchQuery: "",
       omdbResponse: [],
       tt: "",
-      title: ""
+      title: "",
+      quotes: []
     }
     
     this.handleChange = this.handleChange.bind(this)
@@ -29,10 +31,11 @@ class App extends React.Component {
     })    
   }
 
-  handleChoice(tt, title) {
-    this.setState(({tt: tt, title: title}),
-      console.log(this.state.tt)
-    )
+  handleChoice(tt, title, year) {
+    this.setState(({tt: tt, title: title}), () => {
+      axios.get("https://quotle-go.herokuapp.com/movie/?tt="+tt+"&title="+title+" ("+year+")")
+      .then(response => this.setState({quotes: response}))
+    })
   }
 
   render() {
@@ -48,12 +51,12 @@ class App extends React.Component {
           <div className="choiceDiv">
             {this.state.omdbResponse &&
               this.state.omdbResponse.map(option => (
-                <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title) }>
+                <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title, option.Year) }>
                     <div className="card-image">
-                      <img src={ option.Poster } alt={ option.Title } />
+                      <img src={ (option.Poster === "N/A") ? Pop : option.Poster } alt={ option.Title } />
                     </div>
                     <div className="card-text">
-                      <p>{ option.Title }</p>
+                      <p>{ option.Title } ({ option.Year })</p>
                     </div>
                 </div>
             ))}
