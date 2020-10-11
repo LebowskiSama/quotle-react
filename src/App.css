@@ -1,12 +1,19 @@
 .App {
   text-align: center;
-  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  font-size: calc(10px + 2vmin);
+}
+
+.base {
+  animation: baseAnimate 0.1s ease-out;
+}
+
+@keyframes baseAnimate {
+  from { scale: 0.5 ; opacity: 0;}
+  to { scale: 1; opacity: 1; }
 }
 
 .container {
@@ -19,4 +26,44 @@
 
 input {
   width: 500px !important;
+}
+
+.choiceDiv {
+  margin-top: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 200px;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 8%;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0.3; }
+  to {opacity: 1; }
+}
+
+.card-image img{
+  width: 200px;
+  height: auto;
+}
+
+.card-text {
+  text-align: center;
+  font-size: calc(1px + 2vmin);
+}
+
+.card:hover {
+  cursor: pointer;
+  scale: 1.1;
+  transition: 0.2s;
 }
