@@ -5,10 +5,6 @@ import TextField from '@material-ui/core/TextField'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 
-const textFieldStyle = {
-  height: 300
-}
-
 class App extends React.Component {
 
   constructor(props){
@@ -55,7 +51,7 @@ class App extends React.Component {
           <div className="base">
             <h1>Quotle</h1>
             <div className="searchDiv">
-              <TextField label="Search" onInput={ this.handleChange } inputProps={ textFieldStyle } />
+              <TextField id="textField" label="Search" onInput={ this.handleChange } />
             </div>
           </div>
           <div className="choiceDiv">
