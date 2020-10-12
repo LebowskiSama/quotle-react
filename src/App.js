@@ -24,7 +24,7 @@ class App extends React.Component {
 
   handleChange = e => {
     this.setState({searchQuery: e.target.value}, () => {
-      axios.get("http://www.omdbapi.com/?apikey=2a5e533b&s="+this.state.searchQuery)
+      axios.get("https://www.omdbapi.com/?apikey=2a5e533b&s="+this.state.searchQuery)
       .then(response => this.setState({omdbResponse: response.data.Search}))
     })
   }
