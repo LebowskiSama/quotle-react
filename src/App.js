@@ -28,12 +28,12 @@ class App extends React.Component {
     this.setState({searchQuery: e.target.value}, () => {
       axios.get("http://www.omdbapi.com/?apikey=2a5e533b&s="+this.state.searchQuery)
       .then(response => this.setState({omdbResponse: response.data.Search}))
-    })    
+    })
   }
 
   handleChoice(tt, title, year) {
     this.setState(({tt: tt, title: title}), () => {
-      axios.get("https://quotle-go.herokuapp.com/movie/?tt="+tt+"&title="+title+" ("+year+")")
+      axios.get("https://quotle-go.herokuapp.com/movie/?tt=" + tt)
       .then(response => this.setState({quotes: response}))
     })
   }
@@ -59,6 +59,12 @@ class App extends React.Component {
                       <p>{ option.Title } ({ option.Year })</p>
                     </div>
                 </div>
+            ))}
+          </div>
+          <div className="quotesDiv">
+            {this.state.quotes.data && 
+            this.state.quotes.data.map(quote => (
+              <p  dangerouslySetInnerHTML={{ __html: quote }}></p>
             ))}
           </div>
         </div>

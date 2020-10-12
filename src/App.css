@@ -67,3 +67,12 @@ input {
   scale: 1.1;
   transition: 0.2s;
 }
+
+.quotesDiv hr {
+  animation: grow 3s ease-out forwards;
+}
+
+@keyframes grow {
+  from { width: 0%; }
+  to { width: 75%; }
+}
