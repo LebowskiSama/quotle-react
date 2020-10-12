@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .base {
@@ -59,7 +58,7 @@ input {
 
 .card-text {
   text-align: center;
-  font-size: calc(1px + 2vmin);
+  font-size: medium;
 }
 
 .card:hover {
@@ -68,7 +67,7 @@ input {
   transition: 0.2s;
 }
 
-.quotesDiv hr {
+#quotesDiv hr {
   animation: grow 3s ease-out forwards;
 }
 

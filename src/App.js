@@ -18,6 +18,7 @@ class App extends React.Component {
       omdbResponse: [],
       tt: "",
       title: "",
+      year: "",
       quotes: []
     }
     
@@ -33,10 +34,18 @@ class App extends React.Component {
   }
 
   handleChoice(tt, title, year) {
-    this.setState(({tt: tt, title: title}), () => {
+    this.setState(({tt: tt, title: title, year: year}), () => {
       axios.get("https://quotle-go.herokuapp.com/movie/?tt=" + tt)
       .then(response => this.setState({quotes: response}))
     })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.quotes) {
+      if (prevState.quotes !== this.state.quotes){
+        document.getElementById("quotesDiv").scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }
 
   render() {
@@ -51,9 +60,8 @@ class App extends React.Component {
           </div>
           <div className="choiceDiv">
             {this.state.omdbResponse &&
-              this.state.omdbResponse.map(option => (
-                
-                  <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title, option.Year) }>
+              this.state.omdbResponse.map((option, key) => (
+                  <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title, option.Year) } key={key}>
                     <CardActionArea>
                       <div className="card-image">
                         <img src={ (option.Poster === "N/A") ? Pop : option.Poster } alt={ option.Title } />
@@ -61,14 +69,17 @@ class App extends React.Component {
                       <div className="card-text">
                         <p>{ option.Title } ({ option.Year })</p>
                       </div>
-                      </CardActionArea>
+                    </CardActionArea>
                   </div>
             ))}
           </div>
-          <div className="quotesDiv">
+          <div id="quotesDiv">
+            { this.state.title && this.state.year &&
+              <h2 style={{ marginBottom: "25px" }}>{ this.state.title } ({this.state.year})</h2>
+            }
             {this.state.quotes.data && 
-            this.state.quotes.data.map(quote => (
-              <p  dangerouslySetInnerHTML={{ __html: quote }}></p>
+            this.state.quotes.data.map((quote, key) => (
+              <p dangerouslySetInnerHTML={{ __html: quote }} key={key}></p>
             ))}
           </div>
         </div>
