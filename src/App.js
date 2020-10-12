@@ -2,6 +2,7 @@ import React from 'react';
 import Pop from './images/pop.jpg'
 import './App.css';
 import TextField from '@material-ui/core/TextField'
+import CardActionArea from '@material-ui/core/CardActionArea'
 import axios from 'axios'
 
 const textFieldStyle = {
@@ -51,14 +52,17 @@ class App extends React.Component {
           <div className="choiceDiv">
             {this.state.omdbResponse &&
               this.state.omdbResponse.map(option => (
-                <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title, option.Year) }>
-                    <div className="card-image">
-                      <img src={ (option.Poster === "N/A") ? Pop : option.Poster } alt={ option.Title } />
-                    </div>
-                    <div className="card-text">
-                      <p>{ option.Title } ({ option.Year })</p>
-                    </div>
-                </div>
+                
+                  <div className="card" onClick={ () => this.handleChoice(option.imdbID, option.Title, option.Year) }>
+                    <CardActionArea>
+                      <div className="card-image">
+                        <img src={ (option.Poster === "N/A") ? Pop : option.Poster } alt={ option.Title } />
+                      </div>
+                      <div className="card-text">
+                        <p>{ option.Title } ({ option.Year })</p>
+                      </div>
+                      </CardActionArea>
+                  </div>
             ))}
           </div>
           <div className="quotesDiv">
