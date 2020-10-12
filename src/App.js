@@ -37,10 +37,8 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.quotes) {
-      if (prevState.quotes !== this.state.quotes){
-        document.getElementById("quotesDiv").scrollIntoView({ behavior: "smooth" });
-      }
+    if ( this.state.quotes && prevState.quotes !== this.state.quotes){
+      document.getElementById("quotesDiv").scrollIntoView({ behavior: "smooth" });
     }
   }
 
