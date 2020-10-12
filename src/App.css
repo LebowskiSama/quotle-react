@@ -3,7 +3,21 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.navbar {
+  text-align: right;
+}
+
+i:hover {
+  cursor: pointer;
+  rotate: 360deg;
+  transition: 0.5s ease-out;
+}
+
+.navbar p{
+  margin-right: 20px;
+  margin-left: 20px
 }
 
 .base {
@@ -19,7 +33,7 @@
 }
 
 input {
-  width: 500px !important;
+  width: 55vw !important;
 }
 
 .choiceDiv {

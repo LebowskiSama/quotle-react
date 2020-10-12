@@ -41,10 +41,17 @@ class App extends React.Component {
       document.getElementById("quotesDiv").scrollIntoView({ behavior: "smooth" });
     }
   }
+    
+  pushToSource() {
+    window.open("https://github.com/LebowskiSama/quotle-react", "_blank")
+  }
 
   render() {
     return (
       <div className="App">
+        <div className="navbar">
+          <i onClick={ this.pushToSource } class="fa fa-github" style={{fontSize: "x-large", marginTop: "10px" , marginRight:"20px"}} aria-hidden="true"></i>
+        </div>
         <div className= "container">
           <div className="base">
             <h1>Quotle</h1>
